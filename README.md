@@ -5,7 +5,7 @@ Sound Cloud : my quick and dirty remake (Universal App)
 
 ## Screenshots
 
-![Screenshot 1](Images/soundcloud.png)
+![Screenshot 1](Images/shot1.png)
 
 
 ## Tech. moments
@@ -18,6 +18,7 @@ Min. Win. os build: 14393
  
 - No API key. And no methods of new SoundCloud app reg... 
 - Having a few tracks get error(".m3u" type) on trending music... 
+- SoundCloud API perhaps changed... API key schreme is obsolete :( 
 
 
 ## References

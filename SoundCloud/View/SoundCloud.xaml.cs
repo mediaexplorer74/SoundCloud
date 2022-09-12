@@ -25,13 +25,8 @@ namespace SoundCloud.View
     public sealed partial class SoundCloud : Page
     {
 
-        string Api_key = "";// input your api_key here
-
-
-
-
-
-
+        //RnD
+        string Api_key = "gU5Rw9VDiPPA4OcDlC8VVcb19sHDZFTT";// input your api_key here
 
         TrackSoundCloudViewModel trackViewModel = new TrackSoundCloudViewModel();
         ObservableCollection<DownloadCommand> downloadList = new ObservableCollection<DownloadCommand>();

@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.Foundation;
+using System.Diagnostics;
 
 namespace SoundCloud.ViewModel
 {
@@ -95,11 +96,18 @@ namespace SoundCloud.ViewModel
             
             if (result != null)
             {
-                var getItem = JsonConvert.DeserializeObject<SearchSoundCloud.RootObject>(result);
-                SearchTrackCollection = new ObservableCollection<SearchSoundCloud.Collection>();
-                foreach (var item in getItem.collection)
+                if (result != "{}")
                 {
-                    SearchTrackCollection.Add(item);
+                    var getItem = JsonConvert.DeserializeObject<SearchSoundCloud.RootObject>(result);
+                    SearchTrackCollection = new ObservableCollection<SearchSoundCloud.Collection>();
+                    foreach (var item in getItem.collection)
+                    {
+                        SearchTrackCollection.Add(item);
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("[i] Strange json result: {}!");
                 }
                 
             }
@@ -229,15 +237,22 @@ namespace SoundCloud.ViewModel
             LsvTrackSoundCloud.ItemsSource = null;
             lsvTrackSoundCloudMobile.ItemsSource = null;
             await trackViewModel.GetSearchCollectionAsyncTask(link);
-            if(trackViewModel.SearchTrackCollection.Count!=0)
+            if (trackViewModel.SearchTrackCollection != null)
             {
-                LsvTrackSoundCloud.ItemsSource = trackViewModel.SearchTrackCollection;
-                lsvTrackSoundCloudMobile.ItemsSource = trackViewModel.SearchTrackCollection;
-                _txtError.Text = "";
+                if (trackViewModel.SearchTrackCollection.Count != 0)
+                {
+                    LsvTrackSoundCloud.ItemsSource = trackViewModel.SearchTrackCollection;
+                    lsvTrackSoundCloudMobile.ItemsSource = trackViewModel.SearchTrackCollection;
+                    _txtError.Text = "";
+                }
+                else
+                {
+                    _txtError.Text = "No more results, please to previous results...";
+                }
             }
             else
             {
-                _txtError.Text = "No more results, please to previous results...";
+                _txtError.Text = "No more results, please to previous results :(";
             }
            
             //nextItem = trackViewModel.Next_href[0].ToString();
