@@ -5,7 +5,7 @@ Sound Cloud : my quick and dirty remake (Universal App)
 
 ## Screenshots
 
-![Screenshot 1](Images/shot1.png)
+![Screenshot 1](Images/soundcloud.png)
 
 
 ## Tech. moments
